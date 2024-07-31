@@ -40,6 +40,11 @@ footer {
   color: white;
 }
 
+h1 {
+  font-size: 6em;
+  text-align: center;
+  color: white;
+}
 /* Filters */
 .filter-container {
   display: flex;
@@ -85,13 +90,12 @@ label {
   height: 30%;
 }
 
-.pokemon-type[class*="water"]{
-  background:blue;
+.single-card-content {
+  display: flex;
+  margin: auto;
+  width: 70%;
+}
 
-}
-.pokemon-type[class*="grass"]{
-  background:green;
-}
 
 /* Media queries */
 @media screen and (min-width: 780px) {

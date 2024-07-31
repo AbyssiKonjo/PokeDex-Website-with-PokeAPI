@@ -4,6 +4,27 @@ import { PokeContext } from '../context/PokeContext'
 import { useNavigate } from 'react-router-dom'
 import { Puff } from 'react-loader-spinner'
 
+const typeColors = {
+    normal: '#B8B08D',
+    fire: '#EACFB7',
+    water: '#A0C1D1',
+    grass: '#9EBF8F',
+    electric: '#F2E77A',
+    ice: '#A1D2D0',
+    fighting: '#B63D3A',
+    poison: '#B06DAB',
+    ground: '#D6C689',
+    flying: '#B69FEC',
+    psychic: '#E2868B',
+    bug: '#A7BD5B',
+    rock: '#BDAF6E',
+    ghost: '#8D7B9C',
+    dragon: '#8574F8',
+    dark: '#8D7B6F',
+    steel: '#B9B9CC',
+    fairy: '#E3AFC3',
+};
+
 const HomePage = () => {
   // set up the context
   const {setSelectedPokemon} = useContext(PokeContext)
@@ -85,6 +106,7 @@ const HomePage = () => {
 
   return (
     <div id='homepage'>
+        <h1>POKEDEX</h1>
       <div className='filter-container'>
         <div className='filter'>
             <div className='search-container'>
@@ -139,12 +161,13 @@ const HomePage = () => {
             filteredPokemon.map((item, index) => (
             <div
               key={index}
-              className='pokemon-card pokemon-type type-${item.typeCss}'
+              className='pokemon-card'
+              style={{backgroundColor: typeColors[item.types[0].toLocaleLowerCase()]}}
               onClick={() => {
                 item.onSelect()
                 navigate('/pokemon/')
               }}
-                >
+            >
                 <img src={item.imageURL} alt={item.name}/>
                 <div className='card-details'>
                     <p className='poke-id'>{item.id}</p>
