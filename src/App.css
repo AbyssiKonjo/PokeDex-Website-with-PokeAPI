@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(https://img.freepik.com/free-photo/futuristic-moon-background_23-2150930788.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body.no-scroll {
+  overflow-y: hidden;
+}
+
+/* nav */
+header {
+  background: blueviolet;
+  display: flex;
+  padding: 20px;
+  width: 100%;
+}
+
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: #5b2ed6;
+  color: white;
+}
+
+/* Filters */
+.filter-container {
+  display: flex;
+  align-items: flex-end;
+  justify-items: center;
+  padding: 30px 0 30px 30px;
+  gap: 20px;
+  color: white;
+}
+
+label {
+  display: block;
+  font-size: 2em;
+  margin-bottom: 4px;
+}
+
+/* CARD */
+.pokemon-display-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2em;
+  padding: 30px;
+  width: 100%;
+}
+
+.pokemon-card {
+  width: 300px;
+  height: 450px;
+  background-color: ghostwhite;
+  border: 3px solid blueviolet;
+  border-radius: 10px;
+}
+.pokemon-card img {
+  width: 100%;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  padding: 10px;
+  height: 30%;
+}
+
+.pokemon-type[class*="water"]{
+  background:blue;
+
+}
+.pokemon-type[class*="grass"]{
+  background:green;
+}
+
+/* Media queries */
+@media screen and (min-width: 780px) {
+  /* CARD */
+  .pokemon-display-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

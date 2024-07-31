@@ -24,7 +24,7 @@ const HomePage = () => {
   const fetchPokemon = async () => {
     setLoading(true)
     try {
-      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=799`)
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=12`)
       const pokemonData = response.data.results
       console.log(pokemonData);
       
@@ -85,64 +85,72 @@ const HomePage = () => {
 
   return (
     <div id='homepage'>
-      <div id='search-container'>
-        <label htmlFor='search'>Search</label>
-        <input
-          type='text'
-          name='search'
-          id='search'
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
+      <div className='filter-container'>
+        <div className='filter'>
+            <div className='search-container'>
+                <label htmlFor='search'>Search</label>
+                <input
+                type='text'
+                name='search'
+                id='search'
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                />
+            </div>
+        </div>
+
+        <div className='filter'>
+            <div className='type-container'>
+                <label htmlFor='type'>Type</label>
+                <select
+                name='type'
+                id='type'
+                value={type}
+                onChange={(event) => setType(event.target.value)}
+                >
+                <option value=''>Choose Type...</option>
+                <option value='normal'>normal</option>
+                <option value='fire'>fire</option>
+                <option value='water'>water</option>
+                <option value='grass'>grass</option>
+                <option value='electric'>electric</option>
+                <option value='ice'>ice</option>
+                <option value='fighting'>fighting</option>
+                <option value='poison'>poison</option>
+                <option value='ground'>ground</option>
+                <option value='flying'>flying</option>
+                <option value='psychic'>psychic</option>
+                <option value='bug'>bug</option>
+                <option value='rock'>rock</option>
+                <option value='ghost'>ghost</option>
+                <option value='dragon'>dragon</option>
+                <option value='dark'>dark</option>
+                <option value='steel'>steel</option>
+                <option value='fairy'>fairy</option>
+                </select>
+            </div>
+        </div>
       </div>
 
-      <div id='type-container'>
-        <label htmlFor='type'>Type</label>
-        <select
-          name='type'
-          id='type'
-          value={type}
-          onChange={(event) => setType(event.target.value)}
-        >
-          <option value=''>Choose Type...</option>
-          <option value='normal'>normal</option>
-          <option value='fire'>fire</option>
-          <option value='water'>water</option>
-          <option value='grass'>grass</option>
-          <option value='electric'>electric</option>
-          <option value='ice'>ice</option>
-          <option value='fighting'>fighting</option>
-          <option value='poison'>poison</option>
-          <option value='ground'>ground</option>
-          <option value='flying'>flying</option>
-          <option value='psychic'>psychic</option>
-          <option value='bug'>bug</option>
-          <option value='rock'>rock</option>
-          <option value='ghost'>ghost</option>
-          <option value='dragon'>dragon</option>
-          <option value='dark'>dark</option>
-          <option value='steel'>steel</option>
-          <option value='fairy'>fairy</option>
-        </select>
-      </div>
-
-      <div id='pokemon-display-grid'>
+      <div className='pokemon-display-grid'>
         {loading ? (
           <Puff color='#00BFFF' height={100} width={100}/>
         ) : pokedex.length === 0 ? (<p>No Pokemon Found</p>) : (
             filteredPokemon.map((item, index) => (
             <div
               key={index}
-              id='pokemon-card'
+              className='pokemon-card pokemon-type type-${item.typeCss}'
               onClick={() => {
                 item.onSelect()
                 navigate('/pokemon/')
               }}
-            >
+                >
                 <img src={item.imageURL} alt={item.name}/>
-                <p id='poke-id'>{item.id}</p>
-                <p>{item.name}</p>
-                <p>{item.types.join(", ")}</p>
+                <div className='card-details'>
+                    <p className='poke-id'>{item.id}</p>
+                    <p>{item.name}</p>
+                    <p>{item.types.join(", ")}</p>
+                </div>
             </div>
             ))
         )}
